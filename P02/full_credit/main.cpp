@@ -1,6 +1,5 @@
  #include <iostream>
 #include<ctime>
-#include<vector>
 
 int main(){
 srand(time(NULL));
