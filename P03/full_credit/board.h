@@ -15,6 +15,8 @@ std::string attempt( int tile1, int tile2);
 bool solved();
 void to_string();
 
+private:
+ std::vector<Tile> _tiles;
 };
 
 
