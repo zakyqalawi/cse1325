@@ -17,7 +17,7 @@ public:// holds methods, constructers, and static methods
     std::string to_string();
 
 
-private:// holds variables and static 
+private:// holds variables and static varibles
 
 std::string _word;
 bool _matched;
