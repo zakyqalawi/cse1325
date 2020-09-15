@@ -1,4 +1,4 @@
- CXXFLAGS = --std=c++17
+ CXXFLAGS += --std=c++17
 
 tile: tile.o board.o main.o
     $(CXX) $(CXXFLAGS) tile.o board.o main.o -o tile
