@@ -7,14 +7,14 @@ class Gate{
 public:
 typedef int Signal;
 typedef int Pin;
-Gate();
+Gate(Signal input1, Signal input2);
 void connect(Gate& gate, Pin input_pin); // assigns the parameters to the corresponding attributes
 
-Signal input(Pin pin, Signal signal);
+Signal input(Pin pin, Signal signal);// int input
 
 Signal input(Pin pin);// returns the signal of the pin inputed
 
-Signal output();
+Signal output(); // int output;
 
 private:
 Signal _input1;
