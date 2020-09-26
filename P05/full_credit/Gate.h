@@ -16,9 +16,10 @@ Signal input(Pin pin);// returns the signal of the pin inputed
 
 Signal output(); // int output;
 
-private:
+protected:
 Signal _input1;
 Signal _input2;
+private:
 Gate* _to_gate;
 Pin _to_pin;
 };
