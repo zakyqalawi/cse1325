@@ -5,7 +5,7 @@
 class And : public Gate{
 public:
 And(Signal _input1,Signal _input2);
-virtual Signal output() override;
+Signal output() override;
 };
 
 #endif  
