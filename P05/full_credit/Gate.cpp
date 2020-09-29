@@ -15,21 +15,30 @@ Gate::Signal Gate::input(Pin pin){ // returns the signal value of the pin
 	return _input2;
 }
 
-Gate::Signal Gate::input(Pin pin, Signal signal){
+void Gate::input(Pin pin, Signal signal){
 	if(pin == 1){
 		_input1 = signal;;
-		
-	return _input1;
+	if(_to_gate!=NULL){
+	_to_gate->input(_to_pin, output());
+		std::cout<<9;
+}			
+
 }
 	else{
-			_input2=signal;
-				return _input2;
+		_input2=signal;
+	if(_to_gate!=NULL){
+	_to_gate->input(_to_pin, output());
+std::cout<<8;
+}			
+
 		}
-
-			
-		
-	
-
-
 }
+
+
+Gate::Signal Gate::output(){
+
+Signal check =0;
+return check;
+}
+
 
