@@ -17,16 +17,19 @@ Gate::Signal Gate::input(Pin pin){ // returns the signal value of the pin
 
 Gate::Signal Gate::input(Pin pin, Signal signal){
 	if(pin == 1){
-		signal = _input1;
-		this->connect(*this, pin);
-				}
+		_input1 = signal;;
+		
+	return _input1;
+}
 	else{
-			signal = _input2;
-			this->connect(*this, pin);
-				}
+			_input2=signal;
+				return _input2;
+		}
+
+			
 		
 	
-return signal;
+
 
 }
 
