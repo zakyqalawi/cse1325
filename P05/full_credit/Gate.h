@@ -15,7 +15,7 @@ Signal input(Pin pin, Signal signal);// int input
 Signal input(Pin pin);// returns the signal of the pin inputed
 
 Signal output(); // int output;
-
+ 
 protected:
 Signal _input1;
 Signal _input2;
