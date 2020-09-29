@@ -1,6 +1,9 @@
 #include "Gate.h"
 
-Gate::Gate (Signal input1, Signal input2):_input1{input1}, _input2{input2}{}
+
+Gate::Gate ():_input1{0}, _input2{0}{}
+
+//Gate::Gate();
 
 void Gate::connect(Gate& gate, Pin input_pin){
 	_to_gate = &gate;
@@ -20,7 +23,7 @@ void Gate::input(Pin pin, Signal signal){
 		_input1 = signal;;
 	if(_to_gate!=NULL){
 	_to_gate->input(_to_pin, output());
-		std::cout<<9;
+	
 }			
 
 }
@@ -28,17 +31,18 @@ void Gate::input(Pin pin, Signal signal){
 		_input2=signal;
 	if(_to_gate!=NULL){
 	_to_gate->input(_to_pin, output());
-std::cout<<8;
+
 }			
 
 		}
 }
 
 
-Gate::Signal Gate::output(){
+/*Gate::Signal Gate::output(){
+ return 0;}/*{
 
 Signal check =0;
 return check;
-}
+}*/
 
 

@@ -1,13 +1,14 @@
-  #include"And.h"
+  #include"and.h"
 
 
+And::And(Signal _input1, Signal _input2) {}
 
-Signal output() override{
-if(_input1 == 1){
-	if(_input2==1){
-			return 1;}
-	return 0;
+
+And::Signal And::output(){
+Signal check =0;
+if(_input1 == 1&&_input2 ==1){
+	check = 1;
 }
- return 0;
+ return check;
 }
 
