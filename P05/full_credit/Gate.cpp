@@ -3,7 +3,7 @@
 
 Gate::Gate ():_input1{0}, _input2{0}{}
 
-//Gate::Gate();
+
 
 void Gate::connect(Gate& gate, Pin input_pin){
 	_to_gate = &gate;
