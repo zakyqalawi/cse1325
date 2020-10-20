@@ -7,14 +7,12 @@ all: manga
 debug: CXXFLAGS += -g
 debug: manga
 
-manga: cli.o store.o product.o plant.o tool.o mulch.o Mainwin.o main.o *.h
-	$(CXX) $(CXXFLAGS) cli.o store.o product.o plant.o tool.o mulch.o Mainwin.o main.o $(GTKFLAGS) -o manga
+manga: store.o product.o plant.o tool.o mulch.o Mainwin.o main.o *.h
+	$(CXX) $(CXXFLAGS)  store.o product.o plant.o tool.o mulch.o Mainwin.o main.o $(GTKFLAGS) -o manga
 Mainwin.o: Mainwin.cpp *.h
 	$(CXX) $(CXXFLAGS) -c Mainwin.cpp $(GTKFLAGS) -o Mainwin.o
 main.o: main.cpp *.h
 	$(CXX) $(CXXFLAGS) -c main.cpp $(GTKFLAGS) -o main.o
-cli.o: cli.cpp *.h
-	$(CXX) $(CXXFLAGS) -c cli.cpp -o cli.o
 store.o: store.cpp *.h
 	$(CXX) $(CXXFLAGS) -c store.cpp -o store.o
 product.o: product.cpp *.h

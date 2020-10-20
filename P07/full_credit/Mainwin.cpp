@@ -15,12 +15,12 @@ set_title("MANGA");
 display= Gtk::manage(new Gtk::Label{get_string}, Gtk::{ALIGN_CENTER});
 add(*display);
 display->show();
-}
 
-Gtk::Box *vbox = GTk::manage(new Gtk::VBox); // alocating box to the heap
+
+Gtk::Box *vbox = Gtk::manage(new Gtk::VBox); // alocating box to the heap
 add(*vbox);
 
-Gtk::MenuBar *menubar = Gtk::manage(new Gtk:MenuBar); 
+Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar); 
 vbox->add(*menubar);
 
 //////////////////////////////FILE MENU TAB//////////////////////////////////////////////////////////////////// 
@@ -30,7 +30,7 @@ menubar->append(*menuitem_file);
 Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
 menuitem_file->set_submenu(*filemenu);
 
-Gtk::menuitem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit",true));  // creating the quit menu item
+Gtk::Menuitem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit",true));  // creating the quit menu item
 menuitem_quit->signal_activate().connect([this] {this->on_quit_click();}); // linking the quit method
 
 ///////////////////////////////////// INSERT MENU TAB /////////////////////////////////////////////////////////
@@ -52,11 +52,13 @@ Gtk::MenuItem *menuitem_mulch = Gtk::manage(new Gtk::MenuItem("_Mulch",true));
 menuitem_mulch->signal_activate().connect([this] {this->on_new_mulch_click();});
 insertmenu->append(*menuitem_mulch);
 
+vbox->show_all;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////}
-void on_quit_click(){
-close;
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////}
+/*void on_quit_click(){
+close;
+}*/
 
 
 
