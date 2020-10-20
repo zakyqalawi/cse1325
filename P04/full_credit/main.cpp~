@@ -1,0 +1,9 @@
+#include "Modulo.h" 
+#include <iomanip>
+
+int main(){
+
+Modulo min{60,15};
+Modulo hours{12,10,1};
+min.set_nmsd(&hours);
+}
