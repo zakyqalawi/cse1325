@@ -17,12 +17,12 @@ Modulo& operator++(); // Pre-increment
 
 Modulo operator++(int ignore);// Post-increment with ignored variable
 
-inline bool operator==(int rhs);
-inline bool operator!=(int rhs);
-inline bool operator<(int rhs);
-inline bool operator<=(int rhs);
-inline bool operator>(int rhs);
-inline bool operator>=(int rhs);
+inline bool operator==(int rhs){return (compare(rhs)== 0);}
+inline bool operator!=(int rhs){return (compare(rhs)!= 0);}
+inline bool operator<(int rhs){return (compare(rhs)< 0);}
+inline bool operator<=(int rhs){return (compare(rhs)<= 0);}
+inline bool operator>(int rhs){return (compare(rhs)> 0);}
+inline bool operator>=(int rhs){return (compare(rhs)>= 0);}
 friend std::ostream& operator<<(std::ostream& ost, Modulo& m); // done
 friend std::ostream& operator>>(std::ostream& ost, Modulo& m);
 
