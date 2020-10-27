@@ -25,6 +25,11 @@ menubar->append(*menuitem_file);
 Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
 menuitem_file->set_submenu(*filemenu);
 
+Gtk::MenuItem *menuitem_new_store = Gtk::manage(new Gtk::MenuItem("_New_Store",true));  // creating the quit menu item
+menuitem_new_store->signal_activate().connect([this] {this->on_new_store_click();}); // linking the quit method
+filemenu->append(*menuitem_new_store);
+
+
 Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit",true));  // creating the quit menu item
 menuitem_quit->signal_activate().connect([this] {this->on_quit_click();}); // linking the quit method
 filemenu->append(*menuitem_quit);
@@ -78,7 +83,7 @@ display = Gtk::manage(new Gtk::Label());
 
 
 vbox->show_all();
-on_new_store_click();
+
 
 }
 
