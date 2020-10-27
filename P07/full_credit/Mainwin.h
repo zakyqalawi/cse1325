@@ -1,4 +1,9 @@
+#ifndef MAINWIN_H
+#define MAINWIN_H
+
+
 #include <gtkmm.h>
+#include "store.h"
 
 
 class Mainwin:public Gtk::Window{
@@ -14,14 +19,16 @@ protected:
 	void on_new_tool_click(); //creates a new tool
 	void on_new_plant_click(); // creates a new plant
 	void on_new_mulch_click();   // creates a new mulch
-	void on_new_products_click(); // creates a new product
+	void on_new_products_click();
+	void on_view_products_click(); // creates a new product
 	void on_quit_click();
 
 private:
-	//Gtk::Store *store;
+	Store *store;
 	Gtk::Label *display;// text
 
-	/*int get_int(std::string prompt);
+	int get_int(std::string prompt);
 	double get_double(std::string prompt);
 	std::string get_string(std::string prompt);
-*/
+};
+#endif

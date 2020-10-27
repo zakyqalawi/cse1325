@@ -1,4 +1,4 @@
- CXXFLAGS = --std=c++17
+CXXFLAGS = --std=c++17
 GTKFLAGS = `/usr/bin/pkg-config gtkmm-3.0 --cflags --libs`
 
 
@@ -7,8 +7,8 @@ all: manga
 debug: CXXFLAGS += -g
 debug: manga
 
-manga: store.o product.o plant.o tool.o mulch.o Mainwin.o main.o *.h
-	$(CXX) $(CXXFLAGS)  store.o product.o plant.o tool.o mulch.o Mainwin.o main.o $(GTKFLAGS) -o manga
+manga: store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o *.h
+	$(CXX) $(CXXFLAGS)  store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o $(GTKFLAGS) -o manga
 Mainwin.o: Mainwin.cpp *.h
 	$(CXX) $(CXXFLAGS) -c Mainwin.cpp $(GTKFLAGS) -o Mainwin.o
 main.o: main.cpp *.h
@@ -23,6 +23,8 @@ tool.o: tool.cpp *.h
 	$(CXX) $(CXXFLAGS) -c tool.cpp -o tool.o
 mulch.o: mulch.cpp *.h
 	$(CXX) $(CXXFLAGS) -c mulch.cpp -o mulch.o
+entrydialog.o: entrydialog.cpp *.h
+	$(CXX) $(CXXFLAGS) -c entrydialog.cpp $(GTKFLAGS) -o entrydialog.o
 
 clean:
 	rm -f *.o *.gch ~* a.out manga
