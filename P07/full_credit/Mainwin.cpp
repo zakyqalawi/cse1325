@@ -28,6 +28,14 @@ Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit",true));  //
 menuitem_quit->signal_activate().connect([this] {this->on_quit_click();}); // linking the quit method
 filemenu->append(*menuitem_quit);
 
+Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));  // creating the open menu item
+menuitem_open->signal_activate().connect([this] {this->on_open_click();}); // linking the open click method
+filemenu->append(*menuitem_open);
+
+Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save_As",true));  // creating the save as menu item
+menuitem_save_as->signal_activate().connect([this] {this->on_save_as_click();}); // linking the save as click method
+filemenu->append(*menuitem_save_as);
+
 ///////////////////////////////////// INSERT MENU TAB /////////////////////////////////////////////////////////
 
 Gtk::MenuItem *menuitem_insert = Gtk::manage(new Gtk::MenuItem("_Insert", true));
@@ -47,6 +55,16 @@ Gtk::MenuItem *menuitem_mulch = Gtk::manage(new Gtk::MenuItem("_Mulch",true));
 menuitem_mulch->signal_activate().connect([this] {this->on_new_mulch_click();});
 insertmenu->append(*menuitem_mulch);
 
+////////////////////////////////// OPEN CLICK /////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
 
 display = Gtk::manage(new Gtk::Label());
     display->set_hexpand(true);
@@ -58,6 +76,59 @@ vbox->show_all();
 on_new_store_click();
 
 }
+
+void Mainwin::on_open_click() {
+ 
+Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_OPEN);
+ dialog.set_transient_for(*this);
+
+ /*auto filter_nim = Gtk::FileFilter::create();
+ filter_nim->set_name("NIM files");
+ filter_nim->add_pattern("*.nim");
+ dialog.add_filter(filter_nim);
+
+ auto filter_any = Gtk::FileFilter::create();
+ filter_any->set_name("Any files"); // words that the user sees when the open the dropdown menu>> user options
+ filter_any->add_pattern("*"); // files with this ending
+ dialog.add_filter(filter_any);
+ dialog.set_filename("untitled.nim");
+*/
+
+ //Add response buttons the the dialog:
+ dialog.add_button("_Cancel", 0);
+ dialog.add_button("_Open", 1);
+ int result = dialog.run();
+ if (result == 1) {
+ // Load the game
+ }
+}
+
+void Mainwin::on_save_as_click() {
+ 
+Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_SAVE);
+ dialog.set_transient_for(*this);
+
+ /*auto filter_nim = Gtk::FileFilter::create();
+ filter_nim->set_name("NIM files");
+ filter_nim->add_pattern("*.nim");
+ dialog.add_filter(filter_nim);
+
+ auto filter_any = Gtk::FileFilter::create();
+ filter_any->set_name("Any files"); // words that the user sees when the open the dropdown menu>> user options
+ filter_any->add_pattern("*"); // files with this ending
+ dialog.add_filter(filter_any);
+ dialog.set_filename("untitled.nim");
+*/
+
+ //Add response buttons the the dialog:
+ dialog.add_button("_Cancel", 0);
+ dialog.add_button("_Open", 1);
+ int result = dialog.run();
+ if (result == 1) {
+ // Load the game
+ }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////}
 void on_quit_click(){
 close;
