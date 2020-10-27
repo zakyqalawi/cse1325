@@ -13,3 +13,12 @@ std::ostream& operator<<(std::ostream& ost, const Product& product) {
     return ost;
 }
 int Product::_nextsn = 0;
+
+void Product::save(std::ostream& ost){
+	//ost<<_nextsn<<'\n'<<_stocknum<<'\n'<<to_string()<<'\n'<<_description<<'\n'<<std::endl;
+
+		ost<<to_string()<<'\n'<<std::endl;
+}
+
+
+ 

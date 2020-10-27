@@ -7,7 +7,7 @@
 
 Mainwin::Mainwin():store{nullptr},display{new Gtk::Label{}},filename{"Untitled"} {
 
-set_default_size(400,200); // box size
+set_default_size(200,400); // box size
 set_title("Manga Magic"); // Title of box
 
 
