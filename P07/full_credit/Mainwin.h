@@ -22,7 +22,6 @@ protected:
 	void on_new_products_click();
 	void on_view_products_click(); // creates a new product
 	void on_quit_click(); // closes the window
-
 	void on_open_click();
 	void on_save_click();
 	void on_save_as_click();
@@ -31,6 +30,7 @@ protected:
 private:
 	Store *store;
 	Gtk::Label *display;// text
+	std::string filename;
 
 	int get_int(std::string prompt);
 	double get_double(std::string prompt);

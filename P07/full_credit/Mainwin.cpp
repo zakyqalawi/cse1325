@@ -1,10 +1,11 @@
 #include "Mainwin.h"
 #include "entrydialog.h"
 #include <iostream>
+#include <fstream>
 
 
 
-Mainwin::Mainwin():store{nullptr},display{new Gtk::Label{}}{
+Mainwin::Mainwin():store{nullptr},display{new Gtk::Label{}},filename{"Untitled"} {
 
 set_default_size(400,200); // box size
 set_title("Manga Magic"); // Title of box
@@ -35,6 +36,10 @@ filemenu->append(*menuitem_open);
 Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save_As",true));  // creating the save as menu item
 menuitem_save_as->signal_activate().connect([this] {this->on_save_as_click();}); // linking the save as click method
 filemenu->append(*menuitem_save_as);
+
+Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save",true));  // creating the save as menu item
+menuitem_save->signal_activate().connect([this] {this->on_save_click();}); // linking the save as click method
+filemenu->append(*menuitem_save);
 
 ///////////////////////////////////// INSERT MENU TAB /////////////////////////////////////////////////////////
 
@@ -125,9 +130,26 @@ Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOO
  dialog.add_button("_Open", 1);
  int result = dialog.run();
  if (result == 1) {
+try{
+		std::ofstream ofs{dialog.get_filename()};
+		store->save(ofs);
+	
  // Load the game
- }
-}
+ }catch(std::exception e){
+	Gtk::MessageDialog{*this, "Game saving error"}.run();
+}}}
+
+void Mainwin::on_save_click(){
+
+try{
+	std::ofstream ofs{filename};
+	store->save(ofs);
+	}catch(std::exception e){
+			Gtk::MessageDialog{*this, "Error saving data", false, Gtk::MESSAGE_ERROR}.run();
+}}
+
+;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////}
 void on_quit_click(){
