@@ -86,25 +86,12 @@ void Mainwin::on_open_click() {
  
 Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_OPEN);
  dialog.set_transient_for(*this);
-
- /*auto filter_nim = Gtk::FileFilter::create();
- filter_nim->set_name("NIM files");
- filter_nim->add_pattern("*.nim");
- dialog.add_filter(filter_nim);
-
- auto filter_any = Gtk::FileFilter::create();
- filter_any->set_name("Any files"); // words that the user sees when the open the dropdown menu>> user options
- filter_any->add_pattern("*"); // files with this ending
- dialog.add_filter(filter_any);
- dialog.set_filename("untitled.nim");
-*/
-
- //Add response buttons the the dialog:
+ 
  dialog.add_button("_Cancel", 0);
  dialog.add_button("_Open", 1);
  int result = dialog.run();
  if (result == 1) {
- // Load the game
+
  }
 }
 
@@ -113,19 +100,6 @@ void Mainwin::on_save_as_click() {
 Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_SAVE);
  dialog.set_transient_for(*this);
 
- /*auto filter_nim = Gtk::FileFilter::create();
- filter_nim->set_name("NIM files");
- filter_nim->add_pattern("*.nim");
- dialog.add_filter(filter_nim);
-
- auto filter_any = Gtk::FileFilter::create();
- filter_any->set_name("Any files"); // words that the user sees when the open the dropdown menu>> user options
- filter_any->add_pattern("*"); // files with this ending
- dialog.add_filter(filter_any);
- dialog.set_filename("untitled.nim");
-*/
-
- //Add response buttons the the dialog:
  dialog.add_button("_Cancel", 0);
  dialog.add_button("_Open", 1);
  int result = dialog.run();
@@ -134,9 +108,8 @@ try{
 		std::ofstream ofs{dialog.get_filename()};
 		store->save(ofs);
 	
- // Load the game
  }catch(std::exception e){
-	Gtk::MessageDialog{*this, "Game saving error"}.run();
+	Gtk::MessageDialog{*this, "File saving error"}.run();
 }}}
 
 void Mainwin::on_save_click(){
@@ -161,7 +134,8 @@ Mainwin::~Mainwin() { }
 
 void Mainwin::on_new_store_click() {
     delete store;
-    store = new Store{"Untitled"};
+	std::string name = get_string("Store Name?");
+    store = new Store{name};
 }
 
 void Mainwin::on_new_tool_click() {
