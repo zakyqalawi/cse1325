@@ -91,9 +91,12 @@ Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOO
  dialog.add_button("_Open", 1);
  int result = dialog.run();
  if (result == 1) {
-
+std::ifstream ist{filename};
+std::string input;
+while(std::getline(ist,input)){
+	std::cout<<input<<std::endl;
  }
-}
+}}
 
 void Mainwin::on_save_as_click() {
  
@@ -125,9 +128,6 @@ try{
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////}
-void on_quit_click(){
-close;
-}
 
 
 Mainwin::~Mainwin() { }
