@@ -16,7 +16,9 @@ Gtk::Box *vbox = Gtk::manage(new Gtk::VBox); // alocating box to the heap
 add(*vbox);
 
 Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar); 
-vbox->pack_start(*menubar, Gtk::PACK_SHRINK,0);
+vbox->pack_start(*menubar, Gtk::PACK_SHRINK);
+on_new_store_click();
+
 
 //////////////////////////////FILE MENU TAB//////////////////////////////////////////////////////////////////// 
 
@@ -67,6 +69,27 @@ insertmenu->append(*menuitem_plant);
 Gtk::MenuItem *menuitem_mulch = Gtk::manage(new Gtk::MenuItem("_Mulch",true));
 menuitem_mulch->signal_activate().connect([this] {this->on_new_mulch_click();});
 insertmenu->append(*menuitem_mulch);
+
+Gtk::MenuItem *menuitem_customer = Gtk::manage(new Gtk::MenuItem("_Customer",true));
+menuitem_customer->signal_activate().connect([this] {this->on_customer_click();});
+insertmenu->append(*menuitem_customer);
+
+
+//////////////////////////////////////// VIEW MENU TAB /////////////////////////////////////////////////////////
+
+
+Gtk::MenuItem *menuitem_view = Gtk::manage(new Gtk::MenuItem("_View",true));
+menuitem_view->signal_activate().connect([this] {this->on_view_customer_click();});
+menubar->append(*menuitem_view);
+
+Gtk::Menu *viewmenu = Gtk::manage(new Gtk::Menu);
+menuitem_view->set_submenu(*viewmenu);
+
+Gtk::MenuItem *menuitem_customers = Gtk::manage(new Gtk::MenuItem("_Customers",true));
+viewmenu->append(*menuitem_customers);
+
+Gtk::MenuItem *menuitem_products = Gtk::manage(new Gtk::MenuItem("_Products", true));
+viewmenu->append(*menuitem_products);
 
 ////////////////////////////////// OPEN CLICK /////////////////////////////////////////////////////////////////
 
@@ -220,6 +243,65 @@ void Mainwin::on_view_products_click() {
 void Mainwin::on_quit_click() {
     close();
 }
+
+void Mainwin::on_view_customer_click() {
+    std::string s = "-----------------Current Customers\n----------------\n\n";
+    /*for(int i=0; i<store->customers(); ++i) {
+        std::ostringstream oss;
+        oss << store->customer(i) << '\n';
+        s += oss.str();
+    }
+    display->set_text(s);
+*/
+}
+
+
+void Mainwin::on_customer_click(){
+    try {
+        /*std::string name = get_string("Name?");
+        std::string num = get_string("Phone Number?");
+        std::string email = get_string("Email?");
+        */
+
+Gtk::Dialog dialog{"Insert Customer", *this};
+Gtk::Grid grid;
+
+Gtk::Label C_name{"Name"};
+Gtk::Entry E_name;
+
+grid.attach(C_name, 0, 0, 1, 1);
+grid.attach(E_name, 1,0,2,1);
+
+Gtk::Label C_num{"Phone"};
+Gtk::Entry E_num;
+
+grid.attach(C_num, 0, 1, 1, 1);
+grid.attach(E_num, 1,1,2,1);
+
+Gtk::Label C_mail{"Email"};
+Gtk::Entry E_mail;
+
+grid.attach(C_mail, 0, 2, 1, 1);
+grid.attach(E_mail, 1,2,2,1);
+
+dialog.get_content_area()->add(grid);
+
+dialog.add_button("Insert", 1);
+dialog.add_button("Cancel",0);
+dialog.show_all();
+dialog.run();
+std::string name = E_name.get_text();
+std::string num = E_num.get_text();
+std::string email= E_mail.get_text();
+
+store->add_customer(*(new Customer{name, num, email}));
+        on_view_customer_click();
+    } catch(std::exception& e) {
+    }
+
+
+
+};
 
 std::string Mainwin::get_string(std::string prompt) {
     EntryDialog edialog(*this, "<big>New Product</big>", true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);

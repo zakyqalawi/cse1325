@@ -16,7 +16,7 @@ Gtk::Box *vbox = Gtk::manage(new Gtk::VBox); // alocating box to the heap
 add(*vbox);
 
 Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar); 
-vbox->pack_start(*menubar, Gtk::PACK_SHRINK,0);
+vbox->add(*menubar);
 
 //////////////////////////////FILE MENU TAB//////////////////////////////////////////////////////////////////// 
 
