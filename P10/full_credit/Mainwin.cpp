@@ -115,57 +115,59 @@ viewmenu->append(*menuitem_orders);
 Gtk::Toolbar *toolbar = Gtk::manage(new Gtk::Toolbar);
 vbox->pack_start(*toolbar, Gtk::PACK_SHRINK, 0);
 
-Gtk::ToolButton *new_customer_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::NEW));
-new_customer_button->set_tooltip_markup("Add a new customer");
-new_customer_button->signal_clicked().connect([this] {this->on_customer_click();});
-toolbar->append(*new_customer_button);
-
-Gtk::ToolButton *new_tool_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::ADD));
-new_tool_button->set_tooltip_markup("Add a new tool");
-new_tool_button->signal_clicked().connect([this] {this->on_new_tool_click();});
-toolbar->append(*new_tool_button);
-
-Gtk::ToolButton *new_plant_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
-new_plant_button->set_tooltip_markup("Add a new plant");
-new_plant_button->signal_clicked().connect([this] {this->on_new_plant_click();});
-toolbar->append(*new_plant_button);
-
-Gtk::ToolButton *new_mulch_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::NEW));
-new_plant_button->set_tooltip_markup("Add a new mulch");
-new_mulch_button->signal_clicked().connect([this] {this->on_new_mulch_click();});
-toolbar->append(*new_mulch_button);
-
-Gtk::ToolButton *view_customers_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
-view_customers_button->set_tooltip_markup("view customers");
-view_customers_button->signal_clicked().connect([this] {this->on_view_customers_click();});
-toolbar->append(*view_customers_button);
-
-Gtk::ToolButton *new_store_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *new_store_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::NEW));
 new_store_button->set_tooltip_markup("Add a Store");
 new_store_button->signal_clicked().connect([this] {this->on_new_store_click();});
 toolbar->append(*new_store_button);
 
-Gtk::ToolButton *open_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *open_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::OPEN));
 open_button->set_tooltip_markup("Open a file");
 open_button->signal_clicked().connect([this] {this->on_open_click();});
 toolbar->append(*open_button);
 
-Gtk::ToolButton *save_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *save_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::SAVE));
 save_button->set_tooltip_markup("Save file");
 save_button->signal_clicked().connect([this] {this->on_save_click();});
 toolbar->append(*save_button);
 
-Gtk::ToolButton *save_as_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *save_as_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::SAVE_AS));
 save_as_button->set_tooltip_markup("Save as");
 save_as_button->signal_clicked().connect([this] {this->on_save_as_click();});
 toolbar->append(*save_as_button);
 
-Gtk::ToolButton *new_order_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *new_customer_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::EDIT));
+new_customer_button->set_tooltip_markup("Add a new customer");
+new_customer_button->signal_clicked().connect([this] {this->on_customer_click();});
+toolbar->append(*new_customer_button);
+
+Gtk::ToolButton *new_tool_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::PROPERTIES));
+new_tool_button->set_tooltip_markup("Add a new tool");
+new_tool_button->signal_clicked().connect([this] {this->on_new_tool_click();});
+toolbar->append(*new_tool_button);
+
+Gtk::ToolButton *new_plant_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::REFRESH));
+new_plant_button->set_tooltip_markup("Add a new plant");
+new_plant_button->signal_clicked().connect([this] {this->on_new_plant_click();});
+toolbar->append(*new_plant_button);
+
+Gtk::ToolButton *new_mulch_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::ABOUT));
+new_mulch_button->set_tooltip_markup("Add a new mulch");
+new_mulch_button->signal_clicked().connect([this] {this->on_new_mulch_click();});
+toolbar->append(*new_mulch_button);
+
+Gtk::ToolButton *view_customers_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::ZOOM_FIT));
+view_customers_button->set_tooltip_markup("view customers");
+view_customers_button->signal_clicked().connect([this] {this->on_view_customers_click();});
+toolbar->append(*view_customers_button);
+
+
+
+Gtk::ToolButton *new_order_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::MISSING_IMAGE));
 new_order_button->set_tooltip_markup("Add a new Order");
 new_order_button->signal_clicked().connect([this] {this->on_new_order_click();});
 toolbar->append(*new_order_button);
 
-Gtk::ToolButton *view_orders_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+Gtk::ToolButton *view_orders_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::JUMP_TO));
 view_orders_button->set_tooltip_markup("View Orders");
 view_orders_button->signal_clicked().connect([this] {this->on_view_orders_click();});
 toolbar->append(*view_orders_button);
