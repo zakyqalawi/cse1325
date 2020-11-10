@@ -29,6 +29,9 @@ customer.o: customer.cpp *.h
 	$(CXX) $(CXXFLAGS) -c customer.cpp $(GTKFLAGS) -o customer.o
 item.o: item.cpp *.h
 	$(CXX) $(CXXFLAGS) -c item.cpp $(GTKFLAGS) -o item.o
+order.o: order.cpp *.h
+	$(CXX) $(CXXFLAGS) -c order.cpp $(GTKFLAGS) -o order.o
+
 
 clean:
 	rm -f *.o *.gch ~* a.out manga
