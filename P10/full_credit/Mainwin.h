@@ -32,12 +32,14 @@ protected:
 	void on_order_click();
 	void on_view_orders_click();
 	void on_view_plants_click();
+	void set_status();
 	
 
 private:
 	Store *store;
 	Gtk::Label *display;// text
 	std::string filename;
+	Gtk::Label* msg;
 
 	int get_int(std::string prompt);
 	double get_double(std::string prompt);

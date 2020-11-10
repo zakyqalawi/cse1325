@@ -17,7 +17,15 @@ add(*vbox);
 
 Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar); 
 vbox->pack_start(*menubar, Gtk::PACK_SHRINK);
+
+	 msg= Gtk::manage(new Gtk::Label());
+    msg->set_hexpand(true);
+    vbox->pack_start(*msg, Gtk::PACK_SHRINK, 0);
+   	vbox->show_all();
+
 on_new_store_click();
+
+
 
 
 //////////////////////////////FILE MENU TAB//////////////////////////////////////////////////////////////////// 
@@ -75,7 +83,7 @@ menuitem_customer->signal_activate().connect([this] {this->on_customer_click();}
 insertmenu->append(*menuitem_customer);
 
 Gtk::MenuItem *menuitem_order= Gtk::manage (new Gtk::MenuItem("_Order",true));
-menuitem_order->signal_activate().connect([this] {this->on_order_click();});
+menuitem_order->signal_activate().connect([this] {this->on_new_order_click();});
 insertmenu->append(*menuitem_order);
 
 
@@ -188,6 +196,7 @@ Gtk::FileChooserDialog dialog("Choose a file", Gtk::FileChooserAction::FILE_CHOO
  dialog.add_button("_Open", 1);
  int result = dialog.run();
  if (result == 1) {
+
 std::ifstream ist{filename};
 Store store(ist);
 std::string input;
@@ -251,6 +260,7 @@ void Mainwin::on_new_store_click() {
     delete store;
 	std::string name = get_string("Store Name?");
     store = new Store{name};
+	set_status();
 }
 
 ////////////////////////////////////////// INSERT METHODS /////////////////////////////////////////////////
@@ -298,9 +308,50 @@ void Mainwin::on_new_mulch_click() {
     }
 }
 
-void Mainwin::on_new_order_click(){};
+void Mainwin::on_new_order_click(){
+
+Gtk::Dialog dialog{"Order for which Customer?", *this};
+
+
+Gtk::ComboBoxText combo{true};
+
+for(int i =0; i<store->customers(); i++){
+std::ostringstream oss;
+oss<< store-> customer(i);
+combo.append(oss.str());
+}
+
+//combo.append("test");
+combo.set_active(0);
+dialog.get_content_area()->pack_start(combo,Gtk::PACK_SHRINK);
+dialog.add_button("Start Order", 1);
+dialog.add_button("Cancel",0);
+dialog.show_all();
+dialog.run();
+/*
+std::string name;
+
+ while(dialog.run()) {
+        try {
+            name = E_name.get_text();
+            if(name.empty()) {E_name.set_text("### Required ###"); continue;}
+            Customer customer{name, 
+                              E_num.get_text(),
+                              E_mail.get_text()};
+            store->add_customer(customer);
+            break;
+        } catch(std::exception& e) {
+            Gtk::MessageDialog{*this, "Unable to create new customer " + name 
+                                    + ": " + std::string{e.what()},
+                false, Gtk::MESSAGE_WARNING}.run();
+            break;
+        }
+    }}*/
+
+};
 
 void Mainwin::on_customer_click(){
+	set_status();
     try {
         /*std::string name = get_string("Name?");
         std::string num = get_string("Phone Number?");
@@ -387,11 +438,11 @@ void Mainwin:: on_view_orders_click(){
 //void Mainwin:: on_view_customers_click(){};
 void Mainwin:: on_view_plants_click(){
 std::string s = "Current Plants\n----------------\n\n";
-  /*  for(int i=0; i<store->orders(); ++i) {
+ for(int i=0; i<store->products(); ++i) {
         std::ostringstream oss;
-        oss << store->order(i) << '\n';
+        oss << store->product(i) << '\n';
         s += oss.str();
-    }*/
+    }
     display->set_text(s);
 
 
@@ -444,5 +495,13 @@ int Mainwin::get_int(std::string prompt) {
     }
 }
 
+void Mainwin::set_status() {
+    Glib::ustring s = "";
+ s += "Created New Store";
+    msg->set_markup(s);
+
+    
+
+}
 
 
