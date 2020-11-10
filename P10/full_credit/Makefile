@@ -27,6 +27,8 @@ entrydialog.o: entrydialog.cpp *.h
 	$(CXX) $(CXXFLAGS) -c entrydialog.cpp $(GTKFLAGS) -o entrydialog.o
 customer.o: customer.cpp *.h
 	$(CXX) $(CXXFLAGS) -c customer.cpp $(GTKFLAGS) -o customer.o
+item.o: item.cpp *.h
+	$(CXX) $(CXXFLAGS) -c item.cpp $(GTKFLAGS) -o item.o
 
 clean:
 	rm -f *.o *.gch ~* a.out manga

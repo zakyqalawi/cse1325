@@ -93,7 +93,7 @@ Gtk::Menu *viewmenu = Gtk::manage(new Gtk::Menu);
 menuitem_view->set_submenu(*viewmenu);
 
 Gtk::MenuItem *menuitem_customers = Gtk::manage(new Gtk::MenuItem("_Customers",true));
-menuitem_customers->signal_activate().connect([this] {this->on_view_customer_click();});
+menuitem_customers->signal_activate().connect([this] {this->on_view_customers_click();});
 viewmenu->append(*menuitem_customers);
 
 Gtk::MenuItem *menuitem_products = Gtk::manage(new Gtk::MenuItem("_Products", true));
@@ -123,12 +123,49 @@ new_plant_button->signal_clicked().connect([this] {this->on_new_plant_click();})
 toolbar->append(*new_plant_button);
 
 Gtk::ToolButton *new_mulch_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::NEW));
-new_customer_button->signal_clicked().connect([this] {this->on_new_mulch_click();});
+new_plant_button->set_tooltip_markup("Add a new mulch");
+new_mulch_button->signal_clicked().connect([this] {this->on_new_mulch_click();});
 toolbar->append(*new_mulch_button);
 
-Gtk::ToolButton *view_customer_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
-new_customer_button->signal_clicked().connect([this] {this->on_view_customer_click();});
-toolbar->append(*view_customer_button);
+Gtk::ToolButton *view_customers_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
+view_customers_button->set_tooltip_markup("view customers");
+view_customers_button->signal_clicked().connect([this] {this->on_view_customers_click();});
+toolbar->append(*view_customers_button);
+
+Gtk::ToolButton *new_store_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+new_store_button->set_tooltip_markup("Add a Store");
+new_store_button->signal_clicked().connect([this] {this->on_new_store_click();});
+toolbar->append(*new_store_button);
+
+Gtk::ToolButton *open_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+open_button->set_tooltip_markup("Open a file");
+open_button->signal_clicked().connect([this] {this->on_open_click();});
+toolbar->append(*open_button);
+
+Gtk::ToolButton *save_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+save_button->set_tooltip_markup("Save file");
+save_button->signal_clicked().connect([this] {this->on_save_click();});
+toolbar->append(*save_button);
+
+Gtk::ToolButton *save_as_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+save_as_button->set_tooltip_markup("Save as");
+save_as_button->signal_clicked().connect([this] {this->on_save_as_click();});
+toolbar->append(*save_as_button);
+
+Gtk::ToolButton *new_order_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+new_order_button->set_tooltip_markup("Add a new Order");
+new_order_button->signal_clicked().connect([this] {this->on_new_order_click();});
+toolbar->append(*new_order_button);
+
+Gtk::ToolButton *view_orders_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+view_orders_button->set_tooltip_markup("View Orders");
+view_orders_button->signal_clicked().connect([this] {this->on_view_orders_click();});
+toolbar->append(*view_orders_button);
+
+Gtk::ToolButton *view_plants_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+view_plants_button->set_tooltip_markup("View Plants");
+view_plants_button->signal_clicked().connect([this] {this->on_view_plants_click();});
+toolbar->append(*view_plants_button);
 ////////////////////////////////// OPEN CLICK /////////////////////////////////////////////////////////////////
 
 display = Gtk::manage(new Gtk::Label());
@@ -261,6 +298,8 @@ void Mainwin::on_new_mulch_click() {
     }
 }
 
+void Mainwin::on_new_order_click(){};
+
 void Mainwin::on_customer_click(){
     try {
         /*std::string name = get_string("Name?");
@@ -334,13 +373,35 @@ void Mainwin::on_view_products_click() {
     display->set_text(s);
 }
 
-void Mainwin:: on_view_orders_click(){};
+void Mainwin:: on_view_orders_click(){
+ std::string s = "Current Orders\n----------------\n\n";
+  /*  for(int i=0; i<store->orders(); ++i) {
+        std::ostringstream oss;
+        oss << store->order(i) << '\n';
+        s += oss.str();
+    }*/
+    display->set_text(s);
+
+
+};
+//void Mainwin:: on_view_customers_click(){};
+void Mainwin:: on_view_plants_click(){
+std::string s = "Current Plants\n----------------\n\n";
+  /*  for(int i=0; i<store->orders(); ++i) {
+        std::ostringstream oss;
+        oss << store->order(i) << '\n';
+        s += oss.str();
+    }*/
+    display->set_text(s);
+
+
+};
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Mainwin::on_quit_click() {
     close();
 }
 
-void Mainwin::on_view_customer_click() {
+void Mainwin::on_view_customers_click() {
     std::string s = "Current Customers\n----------------\n\n";
     for(int i=0; i<store->customers(); ++i) {
         std::ostringstream oss;
