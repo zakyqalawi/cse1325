@@ -1,4 +1,4 @@
- #ifndef __PRODUCT_H
+#ifndef __PRODUCT_H
 #define __PRODUCT_H
 
 #include <iostream>
@@ -8,7 +8,8 @@ class Product {
     Product(std::string name, double price, std::string description);
 	Product(std::istream& ist);
 	friend std::ostream& operator<<(std::ostream& ost, const Product& product);
-	void save(std::ostream& ost);
+	virtual void save(std::ostream& ost);
+    double price();
   protected:
     virtual std::string to_string() const;
   private:

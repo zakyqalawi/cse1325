@@ -7,8 +7,8 @@ all: manga
 debug: CXXFLAGS += -g
 debug: manga
 
-manga: store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o customer.o *.h
-	$(CXX) $(CXXFLAGS)  store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o customer.o $(GTKFLAGS) -o manga
+manga: store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o customer.o item.o order.o *.h
+	$(CXX) $(CXXFLAGS)  store.o product.o plant.o tool.o mulch.o Mainwin.o main.o entrydialog.o customer.o item.o order.o $(GTKFLAGS) -o manga
 Mainwin.o: Mainwin.cpp *.h
 	$(CXX) $(CXXFLAGS) -c Mainwin.cpp $(GTKFLAGS) -o Mainwin.o
 main.o: main.cpp *.h
@@ -26,11 +26,11 @@ mulch.o: mulch.cpp *.h
 entrydialog.o: entrydialog.cpp *.h
 	$(CXX) $(CXXFLAGS) -c entrydialog.cpp $(GTKFLAGS) -o entrydialog.o
 customer.o: customer.cpp *.h
-	$(CXX) $(CXXFLAGS) -c customer.cpp $(GTKFLAGS) -o customer.o
+	$(CXX) $(CXXFLAGS) -c customer.cpp -o customer.o
 item.o: item.cpp *.h
-	$(CXX) $(CXXFLAGS) -c item.cpp $(GTKFLAGS) -o item.o
+	$(CXX) $(CXXFLAGS) -c item.cpp -o item.o
 order.o: order.cpp *.h
-	$(CXX) $(CXXFLAGS) -c order.cpp $(GTKFLAGS) -o order.o
+	$(CXX) $(CXXFLAGS) -c order.cpp -o order.o
 
 
 clean:

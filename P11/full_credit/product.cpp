@@ -29,3 +29,4 @@ void Product::save(std::ostream& ost) {
         << _description << '\n';
 }
 
+double Product::price() {return _price;}

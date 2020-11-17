@@ -1,19 +1,15 @@
 #ifndef __ITEM_H
 #define __ITEM_H
 
-#include "tool.h"
-#include "plant.h"
-#include "mulch.h"
-#include "customer.h"
 #include "product.h"
-#include <vector>
+#include <iostream>
 
 class Item {
   public:
     Item(Product& product, int quantity);
-	Store(std::istream& ist);
+	Item(std::istream& ist);
 	void save(std::ostream& ost);
-
+     friend std::ostream& operator<<(std::ostream& ost, const Item& item);
     double subtotal();
 
 

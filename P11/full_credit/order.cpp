@@ -1,34 +1,30 @@
+
 #include "order.h"
-#include <istream>
-#include <ostream>
-#include <iostream>
 
-Order::Order(Customer& customer): _customer{customer} {}
-
-Order::Order(std::istream& ist) {
-    std::getline(ist, _customer);
-    while(ist) {
-        ist>>_customer;
-    }
+Order::Order(Customer customer) : _customer{customer} { }
+Order::Order(std::istream& ist) : _customer{ist} {
+    int items;
+    ist >> items; ist.ignore(32767, '\n');
+    while(items--) _items.push_back(Item{ist});
 }
-double Order::total(){
-
-	double num = 0;
-	for(item c : _items){
-	num = num+c;
-} 
-
-	return num;
-}
-
-
 void Order::save(std::ostream& ost) {
-    ost << _product._name << '\n';
-    ost << _products.size() << '\n';
-    for(Product* p : _products) p->save(ost);
-    ost << _customers.size() << '\n';
-    for(Customer* c : _customers) c->save(ost);
+    _customer.save(ost);
+    ost << _items.size() << '\n';
+    for(Item& i : _items) i.save(ost);
+}
+void Order::add_item(Item item) {
+    _items.push_back(item);
+}
+double Order::total() const {
+    double sum = 0.0;
+    for(Item i : _items) sum += i.subtotal();
+    return sum;
 }
 
-
+std::ostream& operator<<(std::ostream& ost, const Order& order) {
+    ost << "For Customer " << order._customer << "   $" << order.total() << "\n";
+    for(int i=0; i<order._items.size(); ++i)
+        ost << order._items[i] << "\n";
+    return ost;
+}
  

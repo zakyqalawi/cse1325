@@ -311,14 +311,15 @@ void Mainwin::on_new_mulch_click() {
 }
 
 void Mainwin::on_new_order_click(){
-
+int num;
 Gtk::Dialog dialog{"Order for which Customer?", *this};
+std::ostringstream oss;
 
 
 Gtk::ComboBoxText combo{true};
 
 for(int i =0; i<store->customers(); i++){
-std::ostringstream oss;
+
 oss<< store-> customer(i);
 combo.append(oss.str());
 }
@@ -329,7 +330,10 @@ dialog.get_content_area()->pack_start(combo,Gtk::PACK_SHRINK);
 dialog.add_button("Start Order", 1);
 dialog.add_button("Cancel",0);
 dialog.show_all();
-dialog.run();
+if(dialog.run()==0) return;
+num = store->add_order(store->customer(combo.get_active_row_number()));
+     // set_status("Created order " + std::to_string(num));
+
 /*
 std::string name;
 
@@ -349,6 +353,47 @@ std::string name;
             break;
         }
     }}*/
+ {
+      Gtk::MessageDialog dialog{*this, "Add to Order " + std::to_string(num)};
+      
+      // Quantity (spin button)
+      Gtk::HBox qbox;
+      Gtk::Label lq{"Quantity"};
+      qbox.add(lq);
+      Gtk::SpinButton sb;
+      sb.set_range(1.0, 99.0);
+      sb.set_increments(1.0, 10.0);
+      qbox.add(sb);
+      dialog.get_content_area()->add(qbox);
+      
+  
+      Gtk::ComboBoxText combo;
+      for(int i=0; i<store->products(); ++i) {
+        oss.str("");
+        oss << store->product(i);
+        combo.append(oss.str());
+      }
+      dialog.get_content_area()->add(combo);
+
+   
+      dialog.add_button("Add to Order", 1);    
+      dialog.add_button("Order Complete", 0);
+    
+    
+      while(true) {
+       
+        oss.str("");
+        oss << store->order(num);
+        dialog.set_secondary_text(oss.str());
+        
+        dialog.show_all();
+    
+        if(dialog.run() == 1)
+          store->add_item(num, store->product(combo.get_active_row_number()), static_cast<int>(sb.get_value()));
+        else
+          break;
+      }
+    }
 
 };
 
@@ -427,14 +472,13 @@ void Mainwin::on_view_products_click() {
 }
 
 void Mainwin:: on_view_orders_click(){
- std::string s = "Current Orders\n----------------\n\n";
-  /*  for(int i=0; i<store->orders(); ++i) {
+std::string s = "Current Orders\n----------------\n\n";
+ for(int i=0; i<store->orders(); ++i) {
         std::ostringstream oss;
         oss << store->order(i) << '\n';
         s += oss.str();
-    }*/
+    }
     display->set_text(s);
-
 
 };
 //void Mainwin:: on_view_customers_click(){};
