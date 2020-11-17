@@ -38,6 +38,20 @@ class Store {
     std::vector<Order*> _orders;
 };
 
+class Store_book{
+
+private:
+std::string _sn; // Store name
+typedef std::vector<Store> Stores;
+Stores stores;
+public:
+Store_book(std::string name):_sn{name}{}
+std::string store_name(){return _sn;}
+typedef Stores::iterator iterator;
+typedef Stores::const_iterator const_iterator;
+iterator begin() {return stores.begin();}
+iterator end() {return stores.end();}
+};
 #endif
 
 

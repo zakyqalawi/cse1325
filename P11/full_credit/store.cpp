@@ -34,9 +34,9 @@ void Store::add_product(const Tool& product) {_products.push_back(new Tool{produ
 void Store::add_product(const Plant& product) {_products.push_back(new Plant{product});}
 void Store::add_product(const Mulch& product) {_products.push_back(new Mulch{product});}
 
+// explicitly stating using lambda sorting method 
 void Store::sort(std::vector<Customer*> &customer){
-
-    std::sort(customer.begin(),customer.end(),[](Customer* &a, Customer* &b) -> bool{return a->name() < b->name();} );
+std::sort(customer.begin(),customer.end(),[](Customer* &i, Customer* &j) -> bool{return i->name() < j->name();} );
 }
 void Store::add_customer(const Customer& customer){
 

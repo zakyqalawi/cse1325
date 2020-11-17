@@ -23,6 +23,8 @@ vbox->pack_start(*menubar, Gtk::PACK_SHRINK);
     vbox->pack_start(*msg, Gtk::PACK_SHRINK, 0);
    	vbox->show_all();
 
+
+
 on_new_store_click();
 
 
@@ -176,6 +178,12 @@ Gtk::ToolButton *view_plants_button = Gtk::manage(new Gtk::ToolButton(Gtk::Stock
 view_plants_button->set_tooltip_markup("View Plants");
 view_plants_button->signal_clicked().connect([this] {this->on_view_plants_click();});
 toolbar->append(*view_plants_button);
+
+
+Gtk::ScrolledWindow *scroll_window = Gtk::manage(new Gtk::ScrolledWindow());
+scroll_window->set_policy(Gtk::POLICY_AUTOMATIC,Gtk::POLICY_ALWAYS);
+scroll_window->add(*display);
+vbox->add(*scroll_window);
 ////////////////////////////////// OPEN CLICK /////////////////////////////////////////////////////////////////
 
 display = Gtk::manage(new Gtk::Label());
