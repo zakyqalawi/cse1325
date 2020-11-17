@@ -442,6 +442,7 @@ std::string name;
                               E_num.get_text(),
                               E_mail.get_text()};
             store->add_customer(customer);
+      
             break;
         } catch(std::exception& e) {
             Gtk::MessageDialog{*this, "Unable to create new customer " + name 
@@ -449,7 +450,9 @@ std::string name;
                 false, Gtk::MESSAGE_WARNING}.run();
             break;
         }
-    }}
+            
+    }
+}
 
  catch(std::exception& e) {
     }

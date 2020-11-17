@@ -6,6 +6,8 @@
 #include "mulch.h"
 #include "customer.h"
 #include "order.h"
+#include <algorithm>
+#include<string>
 
 #include <vector>
 
@@ -26,6 +28,7 @@ class Store {
      int add_order(const Customer& customer);
     void add_item(int order, Product& product, int quantity);
     const Order& order(int index);
+    void sort(std::vector<Customer*> &customer);
 
 
   private:

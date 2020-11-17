@@ -15,6 +15,8 @@ void Customer::save(std::ostream& ost) {
    ost<<_name<<_phone<<_email<<'\n'<<std::endl;
 }
 
+std::string Customer::name(){return _name;}
+
 std::ostream& operator<<(std::ostream& ost, const Customer& customer) {
     ost << customer._name << " (" << customer._phone << ", " << customer._email << ")";
     return ost;

@@ -33,7 +33,19 @@ Store::Store(std::istream& ist) {
 void Store::add_product(const Tool& product) {_products.push_back(new Tool{product});}
 void Store::add_product(const Plant& product) {_products.push_back(new Plant{product});}
 void Store::add_product(const Mulch& product) {_products.push_back(new Mulch{product});}
-void Store::add_customer(const Customer& customer){_customers.push_back(new Customer{customer});}
+
+void Store::sort(std::vector<Customer*> &customer){
+
+    std::sort(customer.begin(),customer.end(),[](Customer* &a, Customer* &b) -> bool{return a->name() < b->name();} );
+}
+void Store::add_customer(const Customer& customer){
+
+_customers.push_back(new Customer{customer});
+
+sort(_customers);
+}
+
+
 int Store::products() {return _products.size();}
 int Store::customers() {return _customers.size();}
      Product& Store:: product(int index) {return *_products.at(index);}
