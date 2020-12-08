@@ -1,4 +1,5 @@
 #include "mandelbrot.h"
+#include<thread>
 
 const int MAX_COLOR = 255;
 
@@ -7,11 +8,25 @@ Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads)
 
     // Allocate memory for the results
     _values = new int[_width * _height];
+
+    std::thread t[nthreads];
+   // int num[nthreads];
     
-    // Calculate the results
-    for (int y = 0; y < _height; y++)  {
-        calculate_rows(y, y);
+    for(int i=0; i<nthreads; ++i){
+        int count =0; // functions as a counter to know the position of thread
+        t[i]= std::thread{[this, nthreads, count]{ // using the lambda approach passing the number of threads and count
+        
+
+    // Calculate the results by splitting the number of pixels by the number of threads availible
+    for (int position = (count*_height/nthreads); position<((count+1)*(_height/nthreads)); position++)  {
+        calculate_rows(position, position);
     }
+}
+};
+t[i].join();
+count++;
+}
+
 }
 
 // Deallocate results memory
