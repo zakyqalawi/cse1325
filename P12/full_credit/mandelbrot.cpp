@@ -18,7 +18,9 @@ Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads)
         
 
     // Calculate the results by splitting the number of pixels by the number of threads availible
-    for (int position = (i*_height/nthreads); position<((i+1)*(_height/nthreads)); position++)  {
+    int start= (i*_height/nthreads);
+    int bound = ((i+1)*(_height/nthreads));
+    for (int position = start; position<bound; position++)  {
         calculate_rows(position, position);
     }
 }
