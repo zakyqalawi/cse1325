@@ -9,14 +9,12 @@ Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads)
     // Allocate memory for the results
     _values = new int[_width * _height];
 
-    std::thread t[nthreads];
-   // int num[nthreads];
+    std::thread t[nthreads]
     
     for(int i=0; i<nthreads; ++i){
         //int count =0; // functions as a counter to know the position of thread
         t[i]= std::thread{[this, nthreads, i]{ // using the lambda approach passing the number of threads and count
         
-
     // Calculate the results by splitting the number of pixels by the number of threads availible
     int start= (i*_height/nthreads);
     int bound = ((i+1)*(_height/nthreads));
