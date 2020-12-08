@@ -1,5 +1,5 @@
 QUESTION 1: Which values of width, height, and icount did you select for your machine to generate a Mandelbrot image with 1 thread with around a 30 second runtime: 
-
+1100 1100 550 1
 
 QUESTION 2: Provide the output of ``time ./mandelbrot `` *width height icount nthreads* for runs with 1 through 16 threads below. You can run all of these with a single bash command if you like: ``for i in {1..16} ; do time ./mandelbrot 2000 2000 500 $i ; done``
 
@@ -15,17 +15,162 @@ sys	0m0.020s
 
 YOUR Timing:
 
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 1100 1100 550 1
+
+width: 1100 height: 1100 icount: 550 threads: 1
+wrote: image.ppm
+
+real	0m25.751s
+user	0m25.593s
+sys	0m0.076s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 1
+
+width: 2000 height: 2000 icount: 500 threads: 1
+wrote: image.ppm
+
+real	1m25.257s
+user	1m25.045s
+sys	0m0.124s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 2
+
+width: 2000 height: 2000 icount: 500 threads: 2
+wrote: image.ppm
+
+real	0m53.634s
+user	1m40.982s
+sys	0m0.411s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 3
+
+width: 2000 height: 2000 icount: 500 threads: 3
+wrote: image.ppm
+
+real	1m14.215s
+user	1m45.082s
+sys	0m0.441s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 4
+
+width: 2000 height: 2000 icount: 500 threads: 4
+wrote: image.ppm
+
+real	0m52.880s
+user	1m40.815s
+sys	0m0.230s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 5
+
+width: 2000 height: 2000 icount: 500 threads: 5
+wrote: image.ppm
+
+real	0m54.703s
+user	1m31.875s
+sys	0m0.571s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 6
+
+width: 2000 height: 2000 icount: 500 threads: 6
+wrote: image.ppm
+
+real	0m49.713s
+user	1m34.167s
+sys	0m0.340s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 7
+
+width: 2000 height: 2000 icount: 500 threads: 7
+wrote: image.ppm
+
+real	0m48.665s
+user	1m27.415s
+sys	0m0.490s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 6
+
+width: 2000 height: 2000 icount: 500 threads: 6
+wrote: image.ppm
+
+real	0m46.090s
+user	1m27.884s
+sys	0m0.156s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 8
+
+width: 2000 height: 2000 icount: 500 threads: 8
+wrote: image.ppm
+
+real	0m46.215s
+user	1m28.007s
+sys	0m0.216s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 9
+
+width: 2000 height: 2000 icount: 500 threads: 9
+wrote: image.ppm
+
+real	0m47.144s
+user	1m27.513s
+sys	0m0.288s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 10
+
+width: 2000 height: 2000 icount: 500 threads: 10
+wrote: image.ppm
+0
+real	0m48.371s
+user	1m30.765s
+sys	0m0.355s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 11
+
+width: 2000 height: 2000 icount: 500 threads: 11
+wrote: image.ppm
+
+real	0m51.425s
+user	1m35.996s
+sys	0m0.160s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 12
+
+width: 2000 height: 2000 icount: 500 threads: 12
+wrote: image.ppm
+
+real	0m48.127s
+user	1m31.566s
+sys	0m0.152s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 13
+
+width: 2000 height: 2000 icount: 500 threads: 13
+wrote: image.ppm
+
+real	0m50.595s
+user	1m34.753s
+sys	0m0.280s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 14
+
+width: 2000 height: 2000 icount: 500 threads: 14
+wrote: image.ppm
+
+real	0m49.751s
+user	1m34.246s
+sys	0m0.216s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 15
+
+width: 2000 height: 2000 icount: 500 threads: 15
+wrote: image.ppm
+
+real	0m51.862s
+user	1m37.449s
+sys	0m0.252s
+student@maverick:~/cse1325/P12/full_credit$ time ./mandelbrot 2000 2000 500 16
+
+width: 2000 height: 2000 icount: 500 threads: 16
+wrote: image.ppm
+
+real	0m51.174s
+user	1m37.005s
+sys	0m0.491s
 
 
 
 QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
-
+Adding more threads will continue to speed up the program rather than slow it down at all. This is because by adding more threads, you are breaking up the total workload into individual processes that each complete their own 
+part and join back together at the end to deliver the final product.
 
 
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
-
-
+As disussed in lecture 23, when adding more threads the cpu usage or system load increases. Although you gain speed by using more threads, you put a higher workload on the systems hardware which is why the
+system load does not stay as a constant.
 
 
 
