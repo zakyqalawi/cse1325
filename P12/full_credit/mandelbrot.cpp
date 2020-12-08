@@ -13,20 +13,22 @@ Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads)
    // int num[nthreads];
     
     for(int i=0; i<nthreads; ++i){
-        int count =0; // functions as a counter to know the position of thread
-        t[i]= std::thread{[this, nthreads, count]{ // using the lambda approach passing the number of threads and count
+        //int count =0; // functions as a counter to know the position of thread
+        t[i]= std::thread{[this, nthreads, i]{ // using the lambda approach passing the number of threads and count
         
 
     // Calculate the results by splitting the number of pixels by the number of threads availible
-    for (int position = (count*_height/nthreads); position<((count+1)*(_height/nthreads)); position++)  {
+    for (int position = (i*_height/nthreads); position<((i+1)*(_height/nthreads)); position++)  {
         calculate_rows(position, position);
     }
 }
 };
-t[i].join();
-count++;
-}
 
+//count++;
+}
+for(int i = 0; i<nthreads; i++){
+t[i].join();
+}
 }
 
 // Deallocate results memory
